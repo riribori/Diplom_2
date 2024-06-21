@@ -5,11 +5,11 @@ import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.example.CreateOrder;
 import org.example.CreateUser;
+import org.example.DeleteUser;
 import org.example.Steps;
-import org.example.UpdateUser;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import static org.hamcrest.Matchers.is;
 
 public class TestCreateOrder {
@@ -82,7 +82,7 @@ public class TestCreateOrder {
 
     @Test
     @DisplayName("Сreate Order with invalid ingredient")
-    @Description("Test order with invaled ingredient for api/order endpoint ")
+    @Description("Test order with invalid ingredient for api/order endpoint ")
     public void createOrderWithInvalidIngredientTest() {
         String ingredientInvalid = RandomStringUtils.randomAlphabetic(10);
         CreateOrder createOrder = new CreateOrder(new String[]{ingredientInvalid});
@@ -91,5 +91,8 @@ public class TestCreateOrder {
                 .assertThat()
                 .statusCode(500);
     }
-
+    @AfterClass
+    public static void deleteUser() {
+        steps.deleteUser(new DeleteUser(email, name), token).then().statusCode(202);
+    }
 }

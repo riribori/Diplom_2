@@ -9,7 +9,6 @@ import org.example.Steps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.hamcrest.Matchers.is;
 
 public class TestCreateUser {
@@ -28,13 +27,13 @@ public class TestCreateUser {
     }
 
     @Test
-    @DisplayName("Сreate New User") // имя теста
+    @DisplayName("Сreate New User")
     @Description("Basic test for api/auth/register endpoint")
     public void createNewUserTest() {
         CreateUser createUser = new CreateUser(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10) + "@mail.ru" , RandomStringUtils.randomAlphabetic(6));
         Response response = steps.createNewUser(createUser);
                  response.then()
-                .assertThat().body("success", is(true)) //тест на создание
+                .assertThat().body("success", is(true))
                 .and()
                 .statusCode(200);// тест на код
         token = response.jsonPath().getString("accessToken");
@@ -63,7 +62,6 @@ public class TestCreateUser {
                 .and()
                 .statusCode(403);
     }
-
 
    @After
    public void deleteUser() {

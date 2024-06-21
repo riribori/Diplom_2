@@ -7,7 +7,6 @@ import org.example.CreateUser;
 import org.example.DeleteUser;
 import org.example.LoginUser;
 import org.example.Steps;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -52,7 +51,7 @@ public class TestLoginUser {
     @Test
     @DisplayName("Login User error")
     @Description("Error login user for api/auth/login endpoint")
-    public void loginUserErorTest() {
+    public void loginUserErrorTest() {
         LoginUser loginUser = new LoginUser(RandomStringUtils.randomAlphabetic(10) + "@mail.ru", RandomStringUtils.randomAlphabetic(6));
         Response response = steps.loginUser(loginUser);
         response.then().assertThat().body("success", is(false)).body("message", is("email or password are incorrect"))

@@ -5,7 +5,6 @@ import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.example.*;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,7 +34,7 @@ public class TestUpdateUser {
 
     @Test
     @DisplayName("Update User")
-    @Description("Base for api/auth/user endpoint")
+    @Description("Base for update user api/auth/user endpoint")
     public void UpdateUserTest() {
         UpdateUser updateUser = new UpdateUser(RandomStringUtils.randomAlphabetic(10) + "@mail.ru", RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(6));
         email = updateUser.getEmail();
@@ -53,7 +52,7 @@ public class TestUpdateUser {
 
     @Test
     @DisplayName("Update User with broken token")
-    @Description("Test for api/auth/user endpoint with broken token")
+    @Description("Test for update user api/auth/user endpoint with broken token")
     public void UpdateUserWithBrokenTokenTest() {
         UpdateUser updateUser = new UpdateUser(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10) + "@mail.ru", RandomStringUtils.randomAlphabetic(6));
         Response response = steps.updateUser(updateUser, token + RandomStringUtils.randomAlphabetic(10));
@@ -65,7 +64,7 @@ public class TestUpdateUser {
 
     @Test
     @DisplayName("Update User without token")
-    @Description("Test for api/auth/user endpoint without token")
+    @Description("Test for update user api/auth/user endpoint without token")
     public void UpdateUserWithoutTokenTest() {
         UpdateUser updateUser = new UpdateUser(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10) + "@mail.ru", RandomStringUtils.randomAlphabetic(6));
         Response response = steps.updateUser(updateUser);

@@ -87,7 +87,7 @@ public class Steps {
             requestSpecification.header("Authorization", token);
         }
         Response response =
-                requestSpecification
+                requestSpecification.log().all()
                         .and()
                         .body(createOrder)
                         .when()
@@ -98,6 +98,26 @@ public class Steps {
     @Step("Create order without Token")
     public  Response createOrder (CreateOrder createOrder) {
         return createOrder(createOrder, null);
+    }
+
+    @Step("Get orders")
+    public  Response getOrders (String token){
+        RequestSpecification requestSpecification = given()
+                .header("Content-type", "application/json");
+        if (token != null) {
+            requestSpecification.header("Authorization", token);
+        }
+        Response response =
+                requestSpecification
+                        .and()
+                        .when()
+                        .get("api/orders");
+        return response;
+    }
+
+    @Step("Get order without Token")
+    public  Response getOrder () {
+        return getOrders(null);
     }
 }
 
