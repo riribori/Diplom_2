@@ -30,7 +30,6 @@
                     <target>11</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <!-- настройка плагина maven-surefire-plugin -->
                 <groupId>org.apache.maven.plugins</groupId>
